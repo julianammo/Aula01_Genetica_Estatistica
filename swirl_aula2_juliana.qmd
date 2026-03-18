@@ -1,0 +1,293 @@
+---
+title: "Practicing R with swirl"
+author: 
+  - name: Juliana Moraes Machado de Oliveira
+    email: jmachado.oliveira@usp.br
+    affiliation:
+      - name: Graduate Program in Genetics and Plant Breeding, Department of Genetics, ESALQ-USP
+        city: Piracicaba, São Paulo, Brazil
+format: 
+  html:
+    toc: true
+    theme: 
+      light: journal
+      dark: darkly
+---
+
+# Objetivo
+
+O *swirl* é uma plataforma interativa do Software R que possui alguns cursos que visam auxiliar no ensino de programação R e ciências de dados. O objetivo desta atividade é fazer um relatório de aprendizagem dos módulos do primeiro curso do *swirl*: **R Programming: he basics of programming in R.**
+
+# Instalação
+
+A instalação e execução do *swirl* deve ser realizada no **Console**.
+
+install.packages("swirl")
+
+library(swirl)
+
+swirl()
+
+# Comandos Iniciais do *swirl*
+
+Ao chamar o comando no console, inicialmente, o *swirl* começa apresentando algumas instruções básicas excenciais:
+
+1.  "..." - significa que deve-se pressionar o enter depois de ler;
+2.  "ANSWER..."; "prompt do R (\>)"; seleção a partir de uma lista - significa que deve-se responder no console;
+3.  "skip()" - digitar permite pular a pergunta;
+4.  "play()" - digitar permite experimentar comandos do R por conta própria;
+5.  "nxt()" - retomar a lição após o "play()";
+6.  "bye()" - digitar permite encerrar o swirl com proguesso salvo;
+7.  "main()" - retornar ao menu principal do *swirl*;
+8.  "info()" - quando você esquecer dos comandos acima, mostra essas descrições novamente.
+
+# Curso do *swirl*
+
+O *swirl* possui 5 cursos diferentes:
+
+1.  R Programming: The basics of programming in R
+2.  Regression Models: The basics of regression modeling in R
+3.  Statistical Inference: The basics of statistical inference in R
+4.  Exploratory Data Analysis: The basics of exploring data in R
+5.  Don't install anything for me. I'll do it myself.
+
+O objetivo deste relatório é realizar o primeiro módulo do curso "R Programming: The basics of programming in R".
+
+## 1. R Programming: The basics of programming in R
+
+### 1.1 Basis Building Blocks
+
+-   O R é uma calculadora interativa:
+
+    ```{r}
+    7 + 5
+    5 - 2
+    5 * 4
+    6 / 2
+    2 ^ 3
+    ```
+
+-   Permite criar objetos usando os elementos "\<-" ou "=":
+
+    *(Obs. O atalho para criar \<- é "alt" "-")*
+
+    ```{r}
+    a <- 7 + 5
+    b = 5 - 2
+    y = a - b
+    ```
+
+-   Qualquer objeto que contém dados é chamada de "data structure". Vetores são pequenas coleções de números e o tipo mais simples de "data structure". Para criar os vetores, deve-se utilizar a "c()":
+
+    ```{r}
+    z <- c(1.1, 9, 3.14)
+    ```
+
+-   Para saber mais informações sobre uma função, utilize "?" antes da função, como no exemplo a seguir:
+
+    ```{r}
+    ?c
+    ```
+
+-   Você pode combinar vetores para criar um novo vetor:
+
+    ```{r}
+    c(z, 555, z)
+    ```
+
+-   É possível realizar expressões aritméticas utilizando vetores:
+
+    ```{r}
+    z * 2 + 100
+    # Primeiro o R multiplicou cada um dos três elementos e, em seguida, somou 100 a cada um deles.
+    ```
+
+-   A função para raiz quadrada é "sqrt()", enquanto para valor absoluto é "abs()":
+
+    ```{r}
+    sqrt(16)
+    f = -2
+    abs(f)
+    ```
+
+-   Quando os vetores têm comprimentos diferentes, o R recicla o vetor menor ("recycling" method) até que ele tenha o mesmo tamanho do maior:
+
+    ```{r}
+    c(1, 2, 3, 4) + c(0, 10)
+    c(1, 2, 3, 4) + c(0, 10, 100)
+    ```
+
+-   A seta para cima do teclado permite ver os comandos anteriores, sendo possível fazer alterações.
+
+-   Ao digitar as primeiras letras de um objeto salvo anteriormente e clicar na tecla "Tab" do teclado, o R exibirá uma lista de variáveis criadas que começam com essas letras, chamado de "auto-completion".
+
+### 1.2 Workispace and Files
+
+-   "getwd": determina qual diretório o arquivo R está (workspace);
+
+-   "ls()": lista todos os objetos salvos no workspace;
+
+-   "list.files()" ou "dir()": lista todos os aqruivos do diretório;
+
+-   "args()": permite visualizar quais argumentos a função aceita, permitindo entender, por exemplo, a ordem dos argumentos dentro da função;
+
+-   "dir.create()": permite criar um novo diretório no diretório de trabalho atual;
+
+-   "file.create()": criar um arquivo no diretório atual (tem que colocar a extensão, "mytest.R");
+
+-   "file.exists()": saber se um arquivo específico existe;
+
+-   "file.info()": mais informações sobre um arquivo;
+
+-   "file.rename(from, to)": renomear/mudar o nome do arquivo;
+
+-   "file.copy(from, to)": fazer uma cópia do arquivo;
+
+-   "file.path": criar pastas no diretório;
+
+### 1.3 Sequences of Numbers
+
+-   ":" criar uma sequência de números:
+
+    ```{r}
+    1:20
+    15:1
+    ```
+
+-   "seq()": mesma função do ":", entretanto, permite criar sequências com intervalos diferentes usando o argumento "by":
+
+```{r}
+seq(0, 10, by=0.5)
+
+my_seq=seq(5, 10, length=30) #length = tamanho do vetor
+
+length(my_seq)
+
+seq(along.with = my_seq)
+
+seq_along(my_seq) #função específica do R
+```
+
+-   "rep()": outra função relacionada a sequêncas de números onde o objetivo é replicar/repetir.
+
+    ```{r}
+    rep(0, times = 40) # time = quantidade de vezes que rá repetir o número zeros
+
+    rep(c(0, 1, 2), times = 10) # repete a sequencia 10 vezes
+
+    rep(c(0, 1, 2), each = 10) # repete primeiro cada número 10 vezes (individuais)
+    ```
+
+### 1.4 Vectors
+
+-   Mais simples e comum data structure no R;
+
+-   Existem dois tipos de vetores:
+
+    -   Atomic vector: contém um único tipo de dado;
+
+    -   List: pode conter múltiplos tipos de dados.
+
+-   Além dos vetores numéricos que vimos anteriormente, existem outros tipos de atomic vectors: logical, character, integer e complex.
+
+    -   Logical vectors: resultado de condições lógicas, podendo conter os valores TRUE, FALSE e NA ("not available).
+
+        ```{r}
+        num_vect <- c(0.5, 55.0, -10, 6)
+
+        tf <- num_vect<1
+
+        num_vect >= 6
+
+        num_vect != 0.5
+
+        # !=` for inequality (desigualdade)
+        # == exact equality
+
+        # Se tivermos dois logical vectors, podemos fazer algumas verificações:
+        # A | B -> pelo menos uma é TRUE(ou)
+        # A & B -> ambas são TRUE (e)
+        # !A -> é negação de A (TRUE quando A for falso; FALSE quando A for TRUE)
+
+        (3 > 5) & (4 == 4) # 3>5 é falso, enquando 4==4 verdadeiro. Entretanto, usamos &, assim ambas deveriam ser verdadeiras. Como não são, o resultado final é FALSE
+
+        (TRUE == TRUE) | (TRUE == FALSE) # TRUE porque a primeira parte esta correta e o símbolo | indica OU, ou seja, pelo menos uma correta
+
+        ((111 >= 111) | !(TRUE)) & ((4 + 1) == 5)
+        ```
+
+    -   Character vectors: use "" para identificar os objetos (nomes) desse tipo de vetor
+
+        ```{r}
+        my_char <- c("My", "name", "is")
+
+        # Se quisermos juntar esses elementos em uma única sequência de texto, ou seja, forma um character vectorde comprimento 1, usamos a função paste()
+
+        paste(my_char, collapse = " ")
+
+        my_name = c(my_char, "juliana") # concatenar nomes, adicionar
+
+        paste(my_name, collapse = " ")
+
+        paste("Hello", "World!", sep = " ") # sep: separar as palavras / espaço
+
+        paste(c(1:3), c("X", "Y", "Z"), sep = "")
+
+        paste(LETTERS, 1:4, sep = "-") # vector recycling
+        ```
+
+### 1.5 Missing Values
+
+-   Valores ausentes (NA = not available) não devem ser ignorados e sim analisados. O objetivo é verificar se existe algum padrão ou causa para a ausência desses dados.
+
+    ```{r}
+    x <- c(44, NA, 5, NA)
+    x*3
+
+    y <- rnorm(1000)
+    z <- rep(NA, 1000)
+    my_data <- sample(c(y, z), 100) # sortear 100 elementos desses 2000 valores
+
+    my_na <- is.na(my_data) # indica se cada elemento do vetor é NA
+    sum(my_na) # quantidade total de NAs
+    ```
+
+-   NaN: "not a number"
+
+    ```{r}
+    0/0 # resultado nao é um número definido
+    Inf-Inf
+
+    ```
+
+# Objetivos Futuros
+
+1.  Concluir todos os módulos restantes deste primeiro curso;
+2.  Atualizar o documento no GitHub;
+3.  Ter este documento como referência para auxiliar na resolução das atividades de R na disciplina.
+
+## Módulos Restante
+
+1.6 Subsetting Vectors
+
+1.7 Matrices and Data Frames
+
+1.8 Logic
+
+1.9 Functions
+
+1.10 lapply and sapply
+
+1.11 vapply and tapply
+
+1.12 Looking at Data
+
+1.13 Simulation
+
+1.14 Data and Times
+
+1.15 Base Graphics
+
+# Conclusão
+
+Completei os módulos 1 à 5, que abordaram conceitos iniciais da linguagem R, como vetores, sequências e NAs. Pratiquei todos os conceitos e comandos apresentados nesses módulos. Apesar de serem operações básicas, alguns comandos são importantes como, por exemplo, a identificação e contagem de NAs no conjunto de dados, que permite identificar dados faltantes em experimentos. Além disso, eu ainda não conhecia algumas operações com vetores lógicos, que podem ser ferramentas alternativas para futuras filtragem de dados, comparando características entre dois vetores, por exemplo. Acredito que nos próximos módulos, especialmente o de Funções, serão importantes para o apoio no desenvolvimento das atividades da disciplina.
